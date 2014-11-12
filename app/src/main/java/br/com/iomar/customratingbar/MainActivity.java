@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.RatingBar;
 
 public class MainActivity extends Activity {
 
@@ -13,11 +13,17 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rb = (RatingBar) findViewById(R.id.ratingbar);
-        rb.setRating(5);
+        RatingBar rb = (RatingBar) findViewById(R.id.ratingbar);
+        rb.setOnRatingBarChangeListener(onRatingBarChangeListener);
 
     }
 
+    private RatingBar.OnRatingBarChangeListener onRatingBarChangeListener = new RatingBar.OnRatingBarChangeListener() {
+        @Override
+        public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+            ratingBar.setRating(rating);
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
